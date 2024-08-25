@@ -43,6 +43,7 @@ function convertNameIntoUrlSnippet(input) {
 }
 
 function trimIdFromSnippet(input) {
+
     const splitUrl = input.split("-")
     splitUrl.pop()
     return splitUrl.join("-")
