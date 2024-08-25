@@ -1,0 +1,16 @@
+.table-item {
+    padding: 5px 0;
+    border-bottom: 1px solid black;
+    display: grid;
+    width: 100%;
+    grid-template-columns: 200px 1fr 100px max-content;
+    gap: 10px;
+}
+
+.table-item__price {
+    grid-column: 3 / 4;
+}
+
+.table-item__button {
+    grid-column: 4 / 5;
+}

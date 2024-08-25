@@ -1,0 +1,48 @@
+User-Agent: Yandex
+
+Disallow: /*/login
+Disallow: /*/cart
+Allow: /en/
+Allow: /ru/
+Disallow: /*/?search=*
+Disallow: /*/?sortBy=*
+Disallow: /*/?utm_source=*
+Disallow: /*/?utm_medium=*
+Disallow: /*/?utm_campaign=*
+Allow: /*/products/*
+
+Clean-param: search&sortBy&utm_source&utm_medium&utm_campaign /en/
+Clean-param: search&sortBy&utm_source&utm_medium&utm_campaign /ru/
+
+Host: http://localhost:3000
+Sitemap: http://localhost:3000/sitemap.xml
+
+User-agent: Googlebot
+
+Disallow: /*/login
+Disallow: /*/cart
+Allow: /en/
+Allow: /ru/
+Disallow: /*/?search=*
+Disallow: /*/?sortBy=*
+Disallow: /*/?utm_source=*
+Disallow: /*/?utm_medium=*
+Disallow: /*/?utm_campaign=*
+Allow: /*/products/*
+
+Sitemap: http://localhost:3000/sitemap.xml
+
+User-agent: *
+
+Disallow: /*/login
+Disallow: /*/cart
+Allow: /en/
+Allow: /ru/
+Disallow: /*/?search=*
+Disallow: /*/?sortBy=*
+Disallow: /*/?utm_source=*
+Disallow: /*/?utm_medium=*
+Disallow: /*/?utm_campaign=*
+Allow: /*/products/*
+
+Sitemap: http://localhost:3000/sitemap.xml

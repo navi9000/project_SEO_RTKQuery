@@ -1,0 +1,26 @@
+.table {
+    flex-grow: 1;
+    margin-bottom: auto;
+
+}
+
+.item {
+    display: grid;
+    width: 100%;
+    grid-template-columns: 200px 200px 1fr 100px 150px;
+    padding: 10px 0;
+    box-sizing: border-box;
+    border-bottom: 1px solid black;
+}
+
+.item_header {
+    font-weight: 700;
+}
+
+.item__price {
+    grid-column: 4 / 5;
+}
+
+.item__button {
+    grid-column: 5 / 6;
+}
