@@ -160,6 +160,16 @@ app.get('/categories', async (req, res) => {
     })
 })
 
+app.post('/categories', async (req, res) => {
+    const data = await Category.create({
+        ...req.body,
+    })
+    res.json({
+        is_success: true,
+        data
+    })
+})
+
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}`)
 })
