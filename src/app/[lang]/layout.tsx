@@ -27,7 +27,7 @@ export default function RootLayout({
           <header style={{ display: "flex", gap: "5px", justifyContent: "flex-end", width: "100%" }}>
             <Logo lang={lang} />
             <HeaderCart lang={lang} />
-            <Logout />
+            <Logout lang={lang} />
             <LocaleSelector />
           </header>
           {children}

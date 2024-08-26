@@ -4,10 +4,13 @@ import Link from "next/link"
 import { useParams, usePathname } from "next/navigation"
 import { FC } from "react"
 
-const Logout: FC<{}> = () => {
+const Logout: FC<{ lang: string }> = ({ lang }) => {
 
     const pathname = usePathname()
-    const { lang }: { lang: string } = useParams()
+
+    if (pathname === "/".concat(lang, '/login')) {
+        return null
+    }
 
     return <Link href={"/".concat(lang, "/login")}>Выйти</Link>
 }

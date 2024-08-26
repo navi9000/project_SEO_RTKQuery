@@ -18,3 +18,11 @@ a {
 li {
   list-style-type: none;
 }
+
+header {
+  padding: 10px;
+}
+
+main {
+  padding: 10px;
+}
