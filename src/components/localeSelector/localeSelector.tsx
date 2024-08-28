@@ -9,8 +9,6 @@ const LocaleSelector: FC<{}> = () => {
     const pathname = usePathname()
     const { lang } = useParams()
 
-    console.log({ lang, pathname })
-
     const getTargetLang = () => {
         return lang === "ru" ? "en" : "ru"
     }

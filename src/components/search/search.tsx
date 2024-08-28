@@ -14,8 +14,8 @@ const Search: FC<{}> = () => {
         setValue(e.target.value)
     }
 
-    const onSubmit = (e: FormEvent<HTMLFormElement>) => {
-        e.preventDefault()
+    const onSubmit = () => {
+        // e.preventDefault()
         const targetSearchParams = new URLSearchParams(searchParams)
         targetSearchParams.delete("page")
         if (value) {
@@ -23,13 +23,13 @@ const Search: FC<{}> = () => {
         } else {
             targetSearchParams.delete("search")
         }
-        router.replace(pathname.concat("?", targetSearchParams.toString()))
+        router.push(pathname.concat("?", targetSearchParams.toString()))
     }
 
-    return (<form onSubmit={onSubmit}>
+    return (<div >
         <input value={value} onChange={onChange} />
-        <button type="submit">Найти</button>
-    </form>)
+        <button onClick={onSubmit}>Найти</button>
+    </div>)
 }
 
 export default Search

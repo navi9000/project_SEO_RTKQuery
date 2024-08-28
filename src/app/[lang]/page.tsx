@@ -22,9 +22,11 @@ export const metadata: Metadata = {
   }
 }
 
-const Home: NextPage<{ searchParams: { sortBy?: string } }> = async ({ searchParams: { sortBy } }) => {
+const Home: NextPage<{ searchParams: { sortBy?: string } }> = async ({ searchParams }) => {
 
-  const { data, isError } = await fetchData<Item[]>(SERVER_BASE_URL.concat("items?archived=false", sortBy ? `&sortBy=${sortBy}` : ""))
+  const sp = new URLSearchParams(searchParams)
+  sp.set("archived", "false")
+  const { data, isError } = await fetchData<Item[]>(SERVER_BASE_URL.concat("items?", sp.toString()))
 
   return (
     <main className={styles.main}>

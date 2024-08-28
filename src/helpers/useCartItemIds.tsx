@@ -32,7 +32,6 @@ export const CartContextProvider = ({ children }: { children: ReactNode }) => {
     }, [])
 
     useEffect(() => {
-        console.log({ result })
         if (typeof window !== "undefined" && isLoaded) {
             if (result.length) {
                 localStorage.setItem(ADD_PARAM, result.join(","))
