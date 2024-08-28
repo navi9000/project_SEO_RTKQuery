@@ -21,6 +21,10 @@ li {
 
 header {
   padding: 10px;
+  display: flex;
+  gap: 5px;
+  justify-content: flex-end;
+  width: 100%;
 }
 
 main {

@@ -5,6 +5,7 @@ import Logout from "@/components/logout/logout";
 import Logo from "@/components/logo/logo";
 import HeaderCart from "@/components/headerCart/headerCart";
 import { CartContextProvider } from "@/helpers/useCartItemIds";
+import { GlobalProvider } from "@/components/globalProvider/mainPageProvider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -21,18 +22,20 @@ export default function RootLayout({
 }>) {
 
   return (
-    <html lang={lang}>
-      <body className={inter.className}>
-        <CartContextProvider>
-          <header style={{ display: "flex", gap: "5px", justifyContent: "flex-end", width: "100%" }}>
-            <Logo lang={lang} />
-            <HeaderCart lang={lang} />
-            <Logout lang={lang} />
-            <LocaleSelector />
-          </header>
-          {children}
-        </CartContextProvider>
-      </body>
-    </html>
+    <GlobalProvider>
+      <html lang={lang}>
+        <body className={inter.className}>
+          <CartContextProvider>
+            <header>
+              <Logo lang={lang} />
+              <HeaderCart lang={lang} />
+              <Logout lang={lang} />
+              <LocaleSelector />
+            </header>
+            {children}
+          </CartContextProvider>
+        </body>
+      </html>
+    </GlobalProvider>
   )
 }
