@@ -170,6 +170,46 @@ app.post('/categories', async (req, res) => {
     })
 })
 
+app.get('/users/:id', async (req, res) => {
+    const id = +req.params.id
+    if (id === 0 || isNaN(id)) {
+        res.status(400).json({
+            is_success: false,
+            message: 'Bad request'
+        })
+    } else {
+        setTimeout(() => {
+            res.json({
+                is_success: true,
+                data: {
+                    id: 1,
+                    name: 'admin',
+                    role_id: 1
+                }
+            })
+        }, 2000)
+    }
+
+})
+
+app.get('/roles/:id', async (req, res) => {
+    const id = req.params.id
+    if (id !== "1") {
+        res.status(400).json({
+            is_success: false,
+            message: 'Bad request'
+        })
+    } else {
+        res.json({
+            is_success: true,
+            data: {
+                id: 1,
+                name: 'Admin'
+            }
+        })
+    }
+})
+
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}`)
 })
