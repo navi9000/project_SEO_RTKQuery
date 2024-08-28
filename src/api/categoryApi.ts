@@ -14,7 +14,6 @@ export const categoryApi = createApi({
             }),
             keepUnusedDataFor: 24 * 60 * 60,
             transformResponse: (returnValue: ApiResponse<Category[]>) => {
-                console.log({ returnValue })
                 if ("data" in returnValue) {
                     return returnValue.data.map(item => ({ id: item.id, name: item.name }))
                 }

@@ -24,7 +24,6 @@ export default function CreateModal({
     const [createItem] = useCreateItemMutation()
 
     const changeHandler = (e: ChangeEvent<any>) => {
-        console.log({ target: e.target, keys: Object.keys(data) })
         if (Object.keys(data).includes(e.target.name)) {
             setData(prev => ({
                 ...prev,
@@ -41,7 +40,6 @@ export default function CreateModal({
                     ...data,
                     categoryId: +data.categoryId
                 })
-                console.log({ res })
                 if (res) {
                     setData(initialData)
                     close()

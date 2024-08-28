@@ -8,10 +8,6 @@ export default function Table() {
     const [searchParams] = useSearchParams()
     const archived = searchParams.has("archived")
 
-    useEffect(() => {
-        console.log({ isArch_fromComp: searchParams.has("archived") })
-    }, [searchParams])
-
     const { data, isLoading } = useGetItemsQuery({
         archived
     })
