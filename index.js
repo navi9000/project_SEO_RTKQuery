@@ -1,6 +1,6 @@
 const express = require('express')
 const bodyParser = require('body-parser')
-const { Sequelize, Model, DataTypes } = require("sequelize")
+const { Sequelize, Model, DataTypes, Op } = require("sequelize")
 const { convertNameIntoUrlSnippet, trimIdFromSnippet } = require('./helpers/convertNameIntoUrlSnippet')
 
 const sequelize = new Sequelize({
@@ -82,14 +82,15 @@ app.use(function (req, res, next) {
 
 app.get('/items', async (req, res) => {
 
-    const { archived, sortBy } = req.query
+    const { archived, sortBy, search } = req.query
     const order = sortBy?.split(":") ?? undefined
-
-    console.log({ order, sortBy, query: req.query })
 
     const data = await Item.findAll({
         where: {
-            archived: archived === "true"
+            archived: archived === "true",
+            name: {
+                [Op.substring]: search ?? ""
+            }
         },
         order: order ? [order] : undefined
     })
@@ -135,7 +136,6 @@ app.post('/items', async (req, res) => {
 
 app.put('/items/:id', async (req, res) => {
     const data = await Item.findByPk(req.params.id)
-    console.log({ data })
     if (data) {
         await data.update(req.body)
         setTimeout(() => {
