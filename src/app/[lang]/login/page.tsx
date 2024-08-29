@@ -1,6 +1,10 @@
-import { NextPage } from "next"
+import { Metadata, NextPage } from "next"
 import Link from "next/link"
 import styles from "./styles.module.css"
+
+export const metadata: Metadata = {
+    title: 'Логин - МойПроект',
+}
 
 const Page: NextPage = () => {
 
