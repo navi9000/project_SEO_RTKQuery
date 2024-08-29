@@ -20,7 +20,6 @@ function App() {
     if (data) {
       alert(JSON.stringify(data))
     }
-
   }
 
   return (

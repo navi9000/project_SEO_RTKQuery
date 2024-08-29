@@ -45,7 +45,7 @@ export default function CreateModal({
                     close()
                 }
             } catch (err) {
-
+                console.error('Failed to create a new item')
             }
         }
     }
@@ -55,12 +55,12 @@ export default function CreateModal({
             <button onClick={close}>Закрыть</button>
             <form autoComplete='off' onSubmit={submitHandler}>
 
-                {!!categoriesQuery.data && <select value={data.categoryId ?? null} name="categoryId" onChange={changeHandler}>
-                    <option disabled>Выберите категорию</option>
+                {!!categoriesQuery.data && <select value={data.categoryId ?? null} name="categoryId" onChange={changeHandler} required>
+                    <option value="" disabled selected hidden>Выберите категорию</option>
                     {categoriesQuery.data.map(cat => <option key={cat.id} value={cat.id}>{cat.name}</option>)}
                 </select>}
-                <input name="name" placeholder="Наименование" value={data.name} onChange={changeHandler} />
-                <input name="price" placeholder="Цена" type='number' value={data.price} onChange={changeHandler} />
+                <input name="name" placeholder="Наименование" value={data.name} onChange={changeHandler} required />
+                <input name="price" placeholder="Цена" type='number' value={data.price} onChange={changeHandler} required />
                 <button type="submit">Создать</button>
             </form>
         </div>
