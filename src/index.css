@@ -39,11 +39,14 @@ code {
 .App {
   padding: 10px;
   box-sizing: border-box;
+}
+
+main {
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: max-content 1fr max-content;
   height: 100%;
-  min-height: 100vh;
+  min-height: calc(100vh - 20px);
 }
 
 .navbar {
