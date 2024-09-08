@@ -8,7 +8,7 @@ import { fetchUserData } from "./app/infoSlice"
 
 function App() {
 
-  const { theme } = useAppSelector(store => store.infoReducer)
+  const theme = useAppSelector(store => store.infoReducer.theme)
   const dispatch = useAppDispatch()
 
   useEffect(() => {

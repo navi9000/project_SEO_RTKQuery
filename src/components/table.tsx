@@ -1,4 +1,3 @@
-import { useEffect } from "react"
 import { useGetItemsQuery } from "../api/itemApi"
 import TableItem from "./item"
 import { useSearchParams } from "react-router-dom"
