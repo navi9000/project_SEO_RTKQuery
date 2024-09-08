@@ -8,3 +8,5 @@ export const CategoryContext = createContext<{
     categories: [],
     getById: () => ""
 })
+
+export const TableContext = createContext({})

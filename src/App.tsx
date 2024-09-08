@@ -1,6 +1,6 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom"
 import { useAppDispatch, useAppSelector } from "./app/store"
-import { useEffect, memo } from "react"
+import { useEffect } from "react"
 import { fetchUserData } from "./app/infoSlice"
 import MainPage from "./components/mainPage/MainPage"
 
@@ -15,9 +15,9 @@ function App() {
 
   const loadUserData = async () => {
     const data = await dispatch(fetchUserData(1)).unwrap()
-    // if (data) {
-    //   alert(JSON.stringify(data))
-    // }
+    if (data) {
+      alert(JSON.stringify(data))
+    }
   }
 
   return (
