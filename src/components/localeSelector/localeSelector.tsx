@@ -1,8 +1,8 @@
 "use client"
 
 import Link from "next/link"
-import { useParams, usePathname, useSearchParams } from "next/navigation"
-import { FC, useState } from "react"
+import { useParams, usePathname } from "next/navigation"
+import { FC } from "react"
 
 const LocaleSelector: FC<{}> = () => {
 
@@ -14,7 +14,6 @@ const LocaleSelector: FC<{}> = () => {
     }
 
     const buildLink = () => {
-
         return pathname.replace(lang as string, getTargetLang())
     }
 
