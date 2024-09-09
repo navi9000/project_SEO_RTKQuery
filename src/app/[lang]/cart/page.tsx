@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 
 const Page: NextPage = async () => {
 
-    const { data, isError } = await fetchData<Item[]>(SERVER_BASE_URL.concat("items?archived=false"))
+    const { data } = await fetchData<Item[]>(SERVER_BASE_URL.concat("items?archived=false"))
 
     return (
         <main>

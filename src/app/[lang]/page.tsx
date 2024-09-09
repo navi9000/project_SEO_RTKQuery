@@ -9,7 +9,7 @@ import { Item } from "@/utils/types"
 import JsonLD from "@/components/jsonLd/jsonLd"
 
 export const metadata: Metadata = {
-  title: 'Основная страница',
+  title: 'Основная страница - Мой проект',
   description: "Это основная страница. Она здесь самая главная. Здесь можно посмотреть список товаров, отсортировать их и найти товар по названию.",
   alternates: {
     canonical: BASE_URL + 'ru/',
@@ -24,7 +24,7 @@ const Home: NextPage<{ searchParams: { sortBy?: string } }> = async ({ searchPar
 
   const sp = new URLSearchParams(searchParams)
   sp.set("archived", "false")
-  const { data, isError } = await fetchData<Item[]>(SERVER_BASE_URL.concat("items?", sp.toString()))
+  const { data } = await fetchData<Item[]>(SERVER_BASE_URL.concat("items?", sp.toString()))
 
   return (
     <main className={styles.main}>
