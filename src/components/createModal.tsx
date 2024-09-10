@@ -2,6 +2,7 @@ import { ChangeEvent, FormEvent, useState } from "react"
 import { createPortal } from "react-dom"
 import { useGetCategoriesQuery } from "../api/categoryApi"
 import { useCreateItemMutation } from "../api/itemApi"
+import { FetchBaseQueryError } from "@reduxjs/toolkit/query"
 
 type Props = {
   isOpen?: boolean
@@ -11,7 +12,7 @@ type Props = {
 const initialData = {
   categoryId: "",
   price: "",
-  name: "",
+  name: ""
 }
 
 export default function CreateModal({ isOpen, close }: Props) {
@@ -23,7 +24,7 @@ export default function CreateModal({ isOpen, close }: Props) {
     if (Object.keys(data).includes(e.target.name)) {
       setData((prev) => ({
         ...prev,
-        [e.target.name]: e.target.value,
+        [e.target.name]: e.target.value
       }))
     }
   }
@@ -34,11 +35,16 @@ export default function CreateModal({ isOpen, close }: Props) {
       try {
         const res = await createItem({
           ...data,
-          categoryId: +data.categoryId,
+          categoryId: +data.categoryId
         })
-        if (res) {
+        if (res.data) {
           setData(initialData)
           close()
+        } else {
+          alert(
+            ((res.error as FetchBaseQueryError)?.data as { message: string })
+              ?.message
+          )
         }
       } catch (err) {
         console.error("Failed to create a new item")
@@ -53,12 +59,12 @@ export default function CreateModal({ isOpen, close }: Props) {
         <form autoComplete="off" onSubmit={submitHandler}>
           {!!categoriesQuery.data && (
             <select
-              value={data.categoryId ?? null}
+              value={data.categoryId ?? ""}
               name="categoryId"
               onChange={changeHandler}
               required
             >
-              <option value="" disabled selected hidden>
+              <option value="" disabled hidden>
                 Выберите категорию
               </option>
               {categoriesQuery.data.map((cat) => (
@@ -87,6 +93,6 @@ export default function CreateModal({ isOpen, close }: Props) {
         </form>
       </div>
     </div>,
-    document.body,
+    document.getElementsByClassName("App")[0] as HTMLElement
   )
 }

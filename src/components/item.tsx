@@ -1,12 +1,11 @@
 import { useSearchParams } from "react-router-dom"
 import { Item } from "../types"
 import { useUpdateItemMutation } from "../api/itemApi"
-import { useContext } from "react"
-import { CategoryContext } from "../contexts"
+import { useGetCategoriesQuery } from "../api/categoryApi"
 
 export default function TableItem({ id, name, categoryId }: Item) {
   const [searchParams] = useSearchParams()
-  const { getById } = useContext(CategoryContext)
+  const { data } = useGetCategoriesQuery()
   const [updateItem] = useUpdateItemMutation()
 
   const isArchived = searchParams.has("archived")
@@ -14,9 +13,12 @@ export default function TableItem({ id, name, categoryId }: Item) {
   const onClick = () => {
     updateItem({
       id,
-      archived: !isArchived,
+      archived: !isArchived
     })
   }
+
+  const getById = (id: number) =>
+    data?.find((item) => item.id === id)?.name ?? ""
 
   return (
     <li className="item">
