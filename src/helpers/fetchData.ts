@@ -1,25 +1,34 @@
-export default async function fetchData<T extends unknown>(...params: Parameters<typeof fetch>) {
-    let data: null | T = null
-    let isError = false
+export default async function fetchData<T extends unknown>(
+  ...params: Parameters<typeof fetch>
+) {
+  let data: null | T = null
+  let isError = false
 
-    try {
-        const res = await fetch(...params)
-        const json = await res.json()
+  if (!params[1]) {
+    params.push({
+      cache: "no-cache"
+    })
+  } else if (!params[1].cache) {
+    params[1].cache = "no-cache"
+  }
 
-        if (json.is_success) {
-            data = json.data as T
-        } else {
-            isError = true
-            console.error(json.message)
-        }
+  try {
+    const res = await fetch(...params)
+    const json = await res.json()
 
-    } catch (err) {
-        isError = true
-        console.error('Failed to fetch data', err)
-    } finally {
-        return {
-            data,
-            isError
-        }
+    if (json.is_success) {
+      data = json.data as T
+    } else {
+      isError = true
+      console.error(json.message)
     }
+  } catch (err) {
+    isError = true
+    console.error("Failed to fetch data", err)
+  } finally {
+    return {
+      data,
+      isError
+    }
+  }
 }
